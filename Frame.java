@@ -274,7 +274,7 @@ public class Frame extends JFrame implements MenuListener, ActionListener{
 
         JFileChooser fc = new JFileChooser();
         JButton open = new JButton();
-        fc.setCurrentDirectory(new File("Desktop"));
+        fc.setCurrentDirectory(new File("Desktop")); //decides defult directory for file chooser
         fc.setDialogTitle("Select CSV FILE");
         //	fc.setFileSelectionMode("JFileChooser.") possibly make only csv files selectable
 
@@ -282,7 +282,7 @@ public class Frame extends JFrame implements MenuListener, ActionListener{
         tempPane2 = new JDialog();
         tempPane2.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
         int value = fc.showOpenDialog(tempPane2);
-        if (value == JFileChooser.APPROVE_OPTION)
+        if (value == JFileChooser.APPROVE_OPTION) //if user decides to select a file instead of canceling the opperation
         {
             String path = fc.getSelectedFile().getAbsolutePath();
             String line = "";
@@ -299,7 +299,7 @@ public class Frame extends JFrame implements MenuListener, ActionListener{
                     TIME.add(dnum);
                 }
 
-                newList = removeDuplicates(ASUR);
+                newList = removeDuplicates(ASUR); // call function to remove dublicate ASURITES into a new arraylist
 
                 int size =  newList.size();
                 int size2 =  ASUR.size();
@@ -309,7 +309,7 @@ public class Frame extends JFrame implements MenuListener, ActionListener{
                 int q= 0;
 
                 Node[] attendanceList = new Node[size];
-
+// loop for adding the times for dublicate ASURITES
                 while(i < size)
                 {
                     q=0;
@@ -352,15 +352,15 @@ public class Frame extends JFrame implements MenuListener, ActionListener{
                     }
                     i++;
                 }
-
-				for(int n = 0; n < size; n++){
+ 
+				for(int n = 0; n < size; n++){  //Allows the passing of time data into attendence list
 					Node newItem = new Node();
 					newItem.attendanceDate = date;
 					newItem.attendanceAmount = newTIME.get(n);
 					newItem.ASUrite = newList.get(n);
 					attendanceList[n] = newItem;
 
-					System.out.println("Data successfully added.");
+					System.out.println("Data successfully added."); 
 				}
 
 				addAtt(attendanceList);
@@ -370,7 +370,7 @@ public class Frame extends JFrame implements MenuListener, ActionListener{
                 System.out.println("Error.");
             }
         }
-        else if (value == JFileChooser.CANCEL_OPTION)
+        else if (value == JFileChooser.CANCEL_OPTION) // if user clicks cancel a notification appears
         {
             System.out.println("Selection cancelled.");
         }
